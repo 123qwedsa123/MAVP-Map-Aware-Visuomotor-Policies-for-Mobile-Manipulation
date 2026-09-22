@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#142b31" />
+    <meta
+      name="description"
+      content="MAVP gives mobile manipulation policies a shared map frame for base-pose targets, localisation feedback, and coordinated arm actions. Explore six real-world task demonstrations."
+    />
+    <title>MAVP — Map-Aware Visuomotor Policies for Mobile Manipulation</title>
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header" id="top">
+      <nav class="nav shell" aria-label="Primary navigation">
+        <a class="brand" href="#top" aria-label="MAVP, back to top">
+          <span class="brand-mark" aria-hidden="true">M</span>
+          <span>MAVP</span>
+        </a>
+        <div class="nav-links">
+          <a href="#method">Method</a>
+          <a href="#videos">Videos</a>
+          <a href="#results">Results</a>
+        </div>
+        <a class="nav-pill" href="https://aus.bot/research/">More research from PAIR Lab <span aria-hidden="true">↗</span></a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="shell hero-grid">
+          <div class="hero-copy">
+            <p class="eyebrow light">Robot learning <span aria-hidden="true">·</span> Mobile manipulation</p>
+            <h1>Map-Aware Visuomotor Policies for Mobile Manipulation</h1>
+            <p class="authors">
+              Jinhe Tang<sup>1,†</sup> · Ruixiao Dai<sup>1,†</sup> · Weiming Zhi<sup>1,2,3,*</sup>
+            </p>
+            <div class="affiliations">
+              <p><sup>1</sup>School of Computer Science and <sup>2</sup>Australian Center for Robotics, The University of Sydney, Australia</p>
+              <p><sup>3</sup>College of Connected Computing, Vanderbilt University, TN, USA</p>
+              <p><sup>†</sup>Equal contribution · <sup>*</sup>Corresponding author: <a href="mailto:Weiming.Zhi@sydney.edu.au">Weiming.Zhi@sydney.edu.au</a></p>
+            </div>
+            <p class="hero-summary">
+              MAVP learns explicit base-pose targets in a shared map frame and tracks them with localisation feedback, helping a mobile robot reach the right place for manipulation.
+            </p>
+            <div class="hero-actions">
+              <a class="button button-primary" href="#videos">Watch six task demos <span aria-hidden="true">→</span></a>
+              <a class="button button-outline" href="#method">Explore the method</a>
+            </div>
+          </div>
+          <figure class="hero-figure">
+            <img src="assets/images/six-tasks.webp" width="1617" height="865" alt="Figure 1 from the MAVP paper, showing six real-world mobile manipulation tasks" fetchpriority="high" />
+            <figcaption>Six real-world tasks, from drawer packing to bag packing.</figcaption>
+          </figure>
+        </div>
+        <div class="hero-glow" aria-hidden="true"></div>
+      </section>
+
+      <section class="section overview" aria-labelledby="overview-title">
+        <div class="shell section-intro narrow">
+          <p class="eyebrow">Overview</p>
+          <h2 id="overview-title">One shared spatial reference, from demonstrations to execution.</h2>
+          <p>
+            Demonstrations can disagree about where the base should go when their motion is expressed only as local velocity. MAVP reconstructs a static map from demonstrations, uses that map to align base poses, and predicts pose targets alongside arm and gripper actions.
+          </p>
+        </div>
+      </section>
+
+      <section class="section method" id="method" aria-labelledby="method-title">
+        <div class="shell">
+          <div class="section-intro">
+            <p class="eyebrow">Method</p>
+            <h2 id="method-title">Map, localise, act.</h2>
+            <p>The overview below is reproduced directly from Figure 2 of the paper.</p>
+          </div>
+          <figure class="paper-figure method-figure">
+            <img src="assets/images/method-overview.webp" width="1610" height="651" alt="Paper Figure 2: shared map construction, live localisation, and map-aware policy learning" loading="lazy" />
+          </figure>
+        </div>
+      </section>
+
+      <section class="section videos" id="videos" aria-labelledby="videos-title">
+        <div class="shell">
+          <div class="section-intro">
+            <p class="eyebrow">Experiment videos</p>
+            <h2 id="videos-title">Six real-world mobile manipulation tasks</h2>
+            <p>Each clip shows a task rollout. Footage is accelerated for viewing; people visible in the original recordings have been masked or removed from these edits. All six clips use an original instrumental MAVP soundtrack.</p>
+          </div>
+          <div class="video-grid">
+            <article class="video-card">
+              <div class="video-frame"><video controls playsinline preload="none" poster="assets/posters/01-drawer-packing.webp" aria-label="Drawer Packing demonstration"><source src="assets/videos/01-drawer-packing.mp4" type="video/mp4" />Your browser does not support video playback.</video></div>
+              <div class="video-info"><span class="video-number">01</span><h3>Drawer Packing</h3><p>Pick up the eraser, open the drawer, place the eraser and two toys inside, and close it.</p></div>
+            </article>
+            <article class="video-card">
+              <div class="video-frame"><video controls playsinline preload="none" poster="assets/posters/02-disassemble-and-deliver.webp" aria-label="Disassemble and Deliver demonstration"><source src="assets/videos/02-disassemble-and-deliver.mp4" type="video/mp4" />Your browser does not support video playback.</video></div>
+              <div class="video-info"><span class="video-number">02</span><h3>Disassemble and Deliver</h3><p>Remove the peg, travel to the box, and place all parts inside.</p></div>
+            </article>
+            <article class="video-card">
+              <div class="video-frame"><video controls playsinline preload="none" poster="assets/posters/03-lidded-box-packing.webp" aria-label="Lidded Box Packing demonstration"><source src="assets/videos/03-lidded-box-packing.mp4" type="video/mp4" />Your browser does not support video playback.</video></div>
+              <div class="video-info"><span class="video-number">03</span><h3>Lidded Box Packing</h3><p>Approach and open the box, place an object inside, and close the lid.</p></div>
+            </article>
+            <article class="video-card">
+              <div class="video-frame"><video controls playsinline preload="none" poster="assets/posters/04-conveyor-picking.webp" aria-label="Conveyor Picking demonstration"><source src="assets/videos/04-conveyor-picking.mp4" type="video/mp4" />Your browser does not support video playback.</video></div>
+              <div class="video-info"><span class="video-number">04</span><h3>Conveyor Picking</h3><p>Track and grasp an object moving on the conveyor.</p></div>
+            </article>
+            <article class="video-card">
+              <div class="video-frame"><video controls playsinline preload="none" poster="assets/posters/05-dual-drawer-return.webp" aria-label="Dual-Drawer Return demonstration"><source src="assets/videos/05-dual-drawer-return.mp4" type="video/mp4" />Your browser does not support video playback.</video></div>
+              <div class="video-info"><span class="video-number">05</span><h3>Dual-Drawer Return</h3><p>Return two objects to their corresponding drawers.</p></div>
+            </article>
+            <article class="video-card">
+              <div class="video-frame"><video controls playsinline preload="none" poster="assets/posters/06-bag-packing.webp" aria-label="Bag Packing demonstration"><source src="assets/videos/06-bag-packing.mp4" type="video/mp4" />Your browser does not support video playback.</video></div>
+              <div class="video-info"><span class="video-number">06</span><h3>Bag Packing</h3><p>Take a bag from the rack, pack the table objects, and hang the bag back.</p></div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section results" id="results" aria-labelledby="results-title">
+        <div class="shell">
+          <div class="section-intro">
+            <p class="eyebrow">Experimental results</p>
+            <h2 id="results-title">Results from the paper</h2>
+            <p>The tables and plot below are direct crops of the paper. Each evaluated policy received 50 rollouts per task.</p>
+          </div>
+          <div class="results-grid">
+            <figure class="result-card result-wide">
+              <figcaption><span>Table II</span><strong>Base control variants</strong></figcaption>
+              <img src="assets/images/control-variants.webp" width="856" height="368" alt="Paper Table II comparing success rates for base control variants on Disassemble and Deliver and Lidded Box Packing" loading="lazy" />
+            </figure>
+            <figure class="result-card">
+              <figcaption><span>Figure 9</span><strong>Pose-error feedback</strong></figcaption>
+              <img src="assets/images/feedback-ablation.webp" width="817" height="548" alt="Paper Figure 9 showing feedback improves Conveyor Picking success from 24 percent to 66 percent" loading="lazy" />
+            </figure>
+            <figure class="result-card">
+              <figcaption><span>Table V</span><strong>Across policy families</strong></figcaption>
+              <img src="assets/images/policy-families.webp" width="791" height="397" alt="Paper Table V comparing unanchored velocity and map-frame pose control across ACT, diffusion policy, and flow matching" loading="lazy" />
+            </figure>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <footer class="site-footer">
+      <div class="shell footer-inner"><span>MAVP project page · 2026</span><a href="#top">Back to top ↑</a></div>
+    </footer>
+    <script src="script.js" defer></script>
+  </body>
+</html>
