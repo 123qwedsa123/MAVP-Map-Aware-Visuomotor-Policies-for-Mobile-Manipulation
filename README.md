@@ -16,7 +16,7 @@ Open <http://127.0.0.1:8765/>.
 
 This repository is a static site; no build step is needed. In the GitHub repository, open **Settings → Pages**, choose **Deploy from a branch**, and select **main** and **/(root)**. The project URL will be:
 
-<https://123qwedsa123.github.io/MAVP-Map-Aware-Visuomotor-Policies-for-Mobile-Manipulation/>
+<https://123qwedsa123.github.io/mavp/>
 
 ## Media
 
