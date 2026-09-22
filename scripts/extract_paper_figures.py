@@ -12,7 +12,7 @@ from PIL import Image
 # Coordinates are PDF points in the nine-page paper compiled on 2026-09-22.
 CROPS = [
     (0, "six-tasks", (52, 192, 557, 462)),
-    (1, "method-overview", (55, 29, 558, 232)),
+    (1, "method-overview", (55, 29, 558, 240)),
     (4, "control-variants", (34, 190, 301, 305)),
     (6, "feedback-ablation", (52, 34, 307, 205)),
     (6, "policy-families", (311, 156, 558, 280)),
