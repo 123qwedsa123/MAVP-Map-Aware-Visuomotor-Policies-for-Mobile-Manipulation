@@ -23,6 +23,7 @@
           <a href="#method">Method</a>
           <a href="#videos">Videos</a>
           <a href="#results">Results</a>
+          <a href="#paper">Paper</a>
         </div>
         <a class="nav-pill" href="https://aus.bot/research/">More research from PAIR Lab <span aria-hidden="true">↗</span></a>
       </nav>
@@ -46,12 +47,17 @@
               MAVP learns explicit base-pose targets in a shared map frame and tracks them with localisation feedback, helping a mobile robot reach the right place for manipulation.
             </p>
             <div class="hero-actions">
-              <a class="button button-primary" href="#videos">Watch six task demos <span aria-hidden="true">→</span></a>
-              <a class="button button-outline" href="#method">Explore the method</a>
+              <a class="button button-primary" href="assets/paper/MAVP.pdf" target="_blank" rel="noopener" type="application/pdf">Read the paper <span aria-hidden="true">↗</span></a>
+              <a class="button button-outline" href="#videos">Watch six task demos</a>
+              <a class="hero-text-link" href="#method">Explore the method <span aria-hidden="true">→</span></a>
             </div>
           </div>
           <figure class="hero-figure">
-            <img src="assets/images/six-tasks.webp" width="1617" height="865" alt="Figure 1 from the MAVP paper, showing six real-world mobile manipulation tasks" fetchpriority="high" />
+            <div class="task-visual">
+              <img src="assets/images/task-overview.webp" width="2160" height="1056" alt="Original six-task artwork showing a mobile robot performing drawer packing, disassembly, box packing, conveyor picking, dual-drawer return, and bag packing" fetchpriority="high" />
+              <div class="task-label-row" aria-hidden="true"><span>(A) Drawer Packing</span><span>(B) Disassemble and Deliver</span><span>(C) Lidded Box Packing</span></div>
+              <div class="task-label-row task-label-row-bottom" aria-hidden="true"><span>(D) Conveyor Picking</span><span>(E) Dual-Drawer Return</span><span>(F) Bag Packing</span></div>
+            </div>
             <figcaption>Six real-world tasks, from drawer packing to bag packing.</figcaption>
           </figure>
         </div>
@@ -73,10 +79,10 @@
           <div class="section-intro">
             <p class="eyebrow">Method</p>
             <h2 id="method-title">Map, localise, act.</h2>
-            <p>The overview below is reproduced directly from Figure 2 of the paper.</p>
+            <p>Figure 2 artwork from the paper source: shared map construction, localisation, and policy learning.</p>
           </div>
           <figure class="paper-figure method-figure">
-            <img src="assets/images/method-overview.webp" width="1610" height="676" alt="Paper Figure 2: shared map construction, live localisation, and map-aware policy learning" loading="lazy" />
+            <img src="assets/images/method-overview.webp" width="1988" height="616" alt="Original Figure 2 artwork showing shared map construction, live localisation, and map-aware policy learning" loading="lazy" />
           </figure>
         </div>
       </section>
@@ -121,22 +127,119 @@
         <div class="shell">
           <div class="section-intro">
             <p class="eyebrow">Experimental results</p>
-            <h2 id="results-title">Results from the paper</h2>
-            <p>The tables and plot below are direct crops of the paper. Each evaluated policy received 50 rollouts per task.</p>
+            <h2 id="results-title">Map-frame targets improve success across tasks and policies.</h2>
+            <p>All results below are drawn from the paper. Each policy was evaluated over 50 physical rollouts per task; success requires completing every task step.</p>
           </div>
-          <div class="results-grid">
-            <figure class="result-card result-wide">
-              <figcaption><span>Table II</span><strong>Base control variants</strong></figcaption>
-              <img src="assets/images/control-variants.webp" width="856" height="368" alt="Paper Table II comparing success rates for base control variants on Disassemble and Deliver and Lidded Box Packing" loading="lazy" />
-            </figure>
-            <figure class="result-card">
-              <figcaption><span>Figure 9</span><strong>Pose-error feedback</strong></figcaption>
-              <img src="assets/images/feedback-ablation.webp" width="817" height="548" alt="Paper Figure 9 showing feedback improves Conveyor Picking success from 24 percent to 66 percent" loading="lazy" />
-            </figure>
-            <figure class="result-card">
-              <figcaption><span>Table V</span><strong>Across policy families</strong></figcaption>
-              <img src="assets/images/policy-families.webp" width="791" height="397" alt="Paper Table V comparing unanchored velocity and map-frame pose control across ACT, diffusion policy, and flow matching" loading="lazy" />
-            </figure>
+          <article class="data-panel policy-panel" aria-labelledby="policy-title">
+            <div class="panel-heading">
+              <p class="panel-kicker">Table V · Main comparison</p>
+              <h3 id="policy-title">Six tasks, three policy families</h3>
+              <p>V uses unanchored velocity without a pose input. P predicts map-frame pose targets with pose input and localisation feedback.</p>
+            </div>
+            <div class="policy-visual" id="policy-visual" hidden>
+              <div class="chart-topline">
+                <div>
+                  <h4>Task success by control type</h4>
+                  <p>Choose a policy family to compare the same six tasks.</p>
+                </div>
+                <div class="family-switch" role="group" aria-label="Policy family">
+                  <button type="button" data-family="ACT" aria-pressed="true">ACT</button>
+                  <button type="button" data-family="DP" aria-pressed="false">DP</button>
+                  <button type="button" data-family="FM" aria-pressed="false">FM</button>
+                </div>
+              </div>
+              <div class="chart-legend" aria-hidden="true"><span><i class="legend-velocity"></i> Unanchored velocity</span><span><i class="legend-pose"></i> Map-frame pose</span></div>
+              <div class="policy-chart" id="policy-chart" aria-live="polite"></div>
+              <div class="chart-axis" aria-hidden="true"><span>0%</span><span>25%</span><span>50%</span><span>75%</span><span>100%</span></div>
+            </div>
+            <div class="table-scroll">
+              <table class="data-table policy-table" id="policy-table">
+                <caption>Table V. Task success rates in percent over 50 rollouts per task</caption>
+                <thead>
+                  <tr class="group-head"><th scope="col" rowspan="2">Task</th><th scope="colgroup" colspan="2">ACT</th><th scope="colgroup" colspan="2">Diffusion policy</th><th scope="colgroup" colspan="2">Flow matching</th></tr>
+                  <tr class="sub-head"><th scope="col"><abbr title="Unanchored velocity">V</abbr></th><th scope="col"><abbr title="Map-frame pose">P</abbr></th><th scope="col"><abbr title="Unanchored velocity">V</abbr></th><th scope="col"><abbr title="Map-frame pose">P</abbr></th><th scope="col"><abbr title="Unanchored velocity">V</abbr></th><th scope="col"><abbr title="Map-frame pose">P</abbr></th></tr>
+                </thead>
+                <tbody>
+                  <tr><th scope="row">Disassemble and Deliver</th><td>38%</td><td class="row-best">90%</td><td>42%</td><td>86%</td><td>32%</td><td>88%</td></tr>
+                  <tr><th scope="row">Drawer Packing</th><td>20%</td><td>64%</td><td>44%</td><td>62%</td><td>38%</td><td class="row-best">66%</td></tr>
+                  <tr><th scope="row">Conveyor Picking</th><td>42%</td><td>66%</td><td>38%</td><td>74%</td><td>36%</td><td class="row-best">76%</td></tr>
+                  <tr><th scope="row">Lidded Box Packing</th><td>44%</td><td class="row-best">88%</td><td>52%</td><td>56%</td><td>50%</td><td>60%</td></tr>
+                  <tr><th scope="row">Bag Packing</th><td>18%</td><td>66%</td><td>28%</td><td>68%</td><td>32%</td><td class="row-best">70%</td></tr>
+                  <tr><th scope="row">Dual-Drawer Return</th><td>22%</td><td>68%</td><td>30%</td><td>70%</td><td>36%</td><td class="row-best">74%</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="table-note">Source: paper Table V. Bold cells mark the highest success rate for each task.</p>
+          </article>
+
+          <div class="result-pair">
+            <article class="data-panel" aria-labelledby="variants-title">
+              <div class="panel-heading">
+                <p class="panel-kicker">Table II · Controlled variants</p>
+                <h3 id="variants-title">What each component adds</h3>
+                <p>Success rates for ACT variants on two tasks, with the same evaluation protocol.</p>
+              </div>
+              <div class="table-scroll">
+                <table class="data-table compact-table">
+                  <caption>Table II. Success rates for six base-control variants</caption>
+                  <thead><tr><th scope="col">Method / variant</th><th scope="col">Disassemble &amp; Deliver</th><th scope="col">Lidded Box Packing</th></tr></thead>
+                  <tbody>
+                    <tr><th scope="row">Unanchored velocity</th><td>38%</td><td>44%</td></tr>
+                    <tr><th scope="row">Odometry pose</th><td>16%</td><td>16%</td></tr>
+                    <tr><th scope="row">Map-frame pose <small>without pose input</small></th><td>74%</td><td>58%</td></tr>
+                    <tr><th scope="row">Velocity <small>with pose input</small></th><td>60%</td><td>64%</td></tr>
+                    <tr><th scope="row">Map-frame pose <small>with pose input</small></th><td>84%</td><td>76%</td></tr>
+                    <tr class="emphasis-row"><th scope="row">Map-frame pose <small>with pose input + augmentation</small></th><td>90%</td><td>88%</td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <p class="table-note">Pose denotes the current map-frame base-pose input; augmentation adds pose noise during training.</p>
+            </article>
+
+            <article class="data-panel feedback-panel" aria-labelledby="feedback-title">
+              <div class="panel-heading">
+                <p class="panel-kicker">Figure 9 · Feedback ablation</p>
+                <h3 id="feedback-title">Correcting pose error matters</h3>
+                <p>Conveyor Picking, 50 rollouts per variant with the same policy checkpoint.</p>
+              </div>
+              <div class="feedback-body">
+                <p class="mini-heading">Task success</p>
+                <div class="simple-bar-row"><span>FF only</span><div class="simple-track"><i class="velocity-fill" style="width:24%"></i></div><strong>24%</strong></div>
+                <div class="simple-bar-row"><span>FF + FB</span><div class="simple-track"><i class="pose-fill" style="width:66%"></i></div><strong>66%</strong></div>
+                <p class="mini-heading tracking-heading">Time-weighted tracking RMSE <span>lower is better</span></p>
+                <dl class="tracking-grid">
+                  <div><dt>Position · FF only</dt><dd>6.54 <small>cm</small></dd></div>
+                  <div class="improved"><dt>Position · FF + FB</dt><dd>4.30 <small>cm</small></dd></div>
+                  <div><dt>Yaw · FF only</dt><dd>4.36 <small>°</small></dd></div>
+                  <div><dt>Yaw · FF + FB</dt><dd>4.34 <small>°</small></dd></div>
+                </dl>
+              </div>
+              <p class="table-note">FF: feedforward. FB: pose-error feedback. Yaw tracking changes little in this comparison.</p>
+            </article>
+          </div>
+
+          <article class="data-panel localisation-panel" aria-labelledby="localisation-title">
+            <div class="panel-heading">
+              <p class="panel-kicker">Table VI · Ongoing localisation</p>
+              <h3 id="localisation-title">Keep the map frame aligned throughout execution</h3>
+              <p>Success when alignment is fixed after the first map localisation versus updated during deployment.</p>
+            </div>
+            <div class="localisation-grid">
+              <div class="localisation-task"><h4>Disassemble and Deliver</h4><div class="simple-bar-row"><span>Initial only</span><div class="simple-track"><i class="velocity-fill" style="width:64%"></i></div><strong>64%</strong></div><div class="simple-bar-row"><span>Ongoing</span><div class="simple-track"><i class="pose-fill" style="width:90%"></i></div><strong>90%</strong></div></div>
+              <div class="localisation-task"><h4>Lidded Box Packing</h4><div class="simple-bar-row"><span>Initial only</span><div class="simple-track"><i class="velocity-fill" style="width:52%"></i></div><strong>52%</strong></div><div class="simple-bar-row"><span>Ongoing</span><div class="simple-track"><i class="pose-fill" style="width:88%"></i></div><strong>88%</strong></div></div>
+            </div>
+            <p class="table-note">Source: paper Table VI. Ongoing-localisation results are reused from Table II.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section paper-section" id="paper" aria-labelledby="paper-title">
+        <div class="shell paper-callout">
+          <div>
+            <p class="eyebrow light">Full paper</p>
+            <h2 id="paper-title">Read the complete method and experiments.</h2>
+            <p>The tables above show the main comparisons. The PDF contains the full setup, evaluation protocol, ablations, and discussion.</p>
+            <a class="button button-primary" href="assets/paper/MAVP.pdf" target="_blank" rel="noopener" type="application/pdf">Open the paper PDF <span aria-hidden="true">↗</span></a>
           </div>
         </div>
       </section>
