@@ -164,6 +164,15 @@ sup { font-size: .7em; }
 .paper-callout h2 { font-size: clamp(2.15rem, 4vw, 3.6rem); letter-spacing: -.055em; line-height: 1.12; margin-bottom: .9rem; }
 .paper-callout p:not(.eyebrow) { max-width: 640px; margin: 0 auto 1.6rem; color: #c7d8d1; font-size: 1.06rem; line-height: 1.65; }
 
+.citation-shell { max-width: 1000px; }
+.citation-heading { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 1.5rem; }
+.citation-heading .eyebrow { margin-bottom: .6rem; }
+.citation-heading h2 { margin-bottom: 0; font-size: clamp(2rem, 3.7vw, 3rem); letter-spacing: -.045em; }
+.copy-citation { border: 0; cursor: pointer; }
+.citation-code { max-width: 100%; margin: 0; padding: clamp(1rem, 3vw, 2rem); overflow-x: auto; border: 1px solid var(--line); border-radius: 18px; background: white; color: var(--ink); font: .88rem/1.8 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; tab-size: 2; }
+.citation-code code { font: inherit; }
+.citation-status { min-height: 1.5rem; margin: .75rem 0 0; color: var(--muted); font-size: .9rem; }
+
 .site-footer { background: #10262b; color: #becdc8; }
 .footer-inner { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: 1.6rem 0; font-size: .86rem; }
 .site-footer a:hover { color: white; }

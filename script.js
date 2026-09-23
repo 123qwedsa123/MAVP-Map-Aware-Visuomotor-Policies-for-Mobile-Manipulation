@@ -73,3 +73,24 @@ if (policyTable && policyVisual && policyChart && familyButtons.length) {
 
   render("ACT");
 }
+
+const copyCitation = document.getElementById("copy-citation");
+const bibtex = document.getElementById("bibtex");
+const citationStatus = document.getElementById("citation-status");
+
+if (copyCitation && bibtex && citationStatus) {
+  copyCitation.hidden = false;
+  copyCitation.addEventListener("click", async () => {
+    try {
+      await navigator.clipboard.writeText(bibtex.textContent.trim());
+      citationStatus.textContent = "BibTeX copied to clipboard.";
+    } catch {
+      const selection = window.getSelection();
+      const range = document.createRange();
+      range.selectNodeContents(bibtex);
+      selection?.removeAllRanges();
+      selection?.addRange(range);
+      citationStatus.textContent = "Automatic copy is unavailable. Select the BibTeX above and copy it manually.";
+    }
+  });
+}
